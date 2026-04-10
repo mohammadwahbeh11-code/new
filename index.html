@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Imagination - طباعة الإبداع بلا حدود</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <div class="logo-text">print imagination</div>
+                <div class="logo-tagline">طباعة الإبداع بلا حدود</div>
+            </div>
+            <div class="loading-spinner">
+                <div class="spinner-ring">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <div class="loading-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                    <div class="progress-glow"></div>
+                </div>
+                <div class="progress-text" id="progressText">جاري تحميل الموارد...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="mainContent" class="main-content hidden">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <nav class="nav">
+                    <div class="nav-brand">
+                        <h1 class="logo">print imagination</h1>
+                        <span class="tagline">طباعة الإبداع بلا حدود</span>
+                    </div>
+                    <div class="nav-menu" id="navMenu">
+                        <a href="#" class="nav-link active" data-page="home">الرئيسية</a>
+                        <a href="#" class="nav-link" data-page="products">المنتجات</a>
+                        <a href="#" class="nav-link" data-page="design">أداة التصميم</a>
+                        <a href="#" class="nav-link">معرض الأعمال</a>
+                        <a href="#" class="nav-link">اتصل بنا</a>
+                    </div>
+                    <div class="nav-actions">
+                        <button class="cart-btn" id="cartBtn">
+                            <svg class="cart-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.1 16.5H17M17 13V17C17 17.6 16.6 18 16 18H8C7.4 18 7 17.6 7 17V13M9 21C9.6 21 10 20.6 10 20S9.6 19 9 19 8 19.4 8 20 8.4 21 9 21ZM20 21C20.6 21 21 20.6 21 20S20.6 19 20 19 19 19.4 19 20 19.4 21 20 21Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="cart-count" id="cartCount">0</span>
+                        </button>
+                        <div class="theme-toggle" id="themeToggle">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 6.34L4.93 4.93M19.07 19.07l-1.41-1.41" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <button class="menu-toggle" id="menuToggle">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Home Page -->
+        <main id="homePage" class="page active">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-background">
+                    <div class="gradient-orb orb-1"></div>
+                    <div class="gradient-orb orb-2"></div>
+                    <div class="gradient-orb orb-3"></div>
+                </div>
+                <div class="container">
+                    <div class="hero-content">
+                        <h2 class="hero-title animate-text">طباعة الإبداع بلا حدود</h2>
+                        <p class="hero-description animate-text">
+                            منصة طباعة مخصصة متطورة تجمع بين التقنيات ثلاثية الأبعاد والذكاء الاصطناعي لتحويل أفكارك إلى منتجات مطبوعة بجودة استثنائية
+                        </p>
+                        <div class="hero-stats animate-text">
+                            <div class="stat-item">
+                                <span class="stat-number" data-target="1000">0</span>
+                                <span class="stat-label">تصميم مكتمل</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" data-target="500">0</span>
+                                <span class="stat-label">عميل سعيد</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" data-target="50">0</span>
+                                <span class="stat-label">منتج متاح</span>
+                            </div>
+                        </div>
+                        <div class="hero-actions animate-text">
+                            <button class="btn btn--primary btn-start-design" data-page="design">
+                                <span>ابدأ التصميم الآن</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </button>
+                            <button class="btn btn--outline btn-demo">
+                                <span>شاهد العرض التوضيحي</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <polygon points="10,8 16,12 10,16" fill="currentColor"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="floating-elements">
+                            <div class="floating-item product-showcase" style="--delay: 0s" data-product="tshirt">👕</div>
+                            <div class="floating-item product-showcase" style="--delay: 0.5s" data-product="mug">☕</div>
+                            <div class="floating-item product-showcase" style="--delay: 1s" data-product="phone">📱</div>
+                            <div class="floating-item product-showcase" style="--delay: 1.5s" data-product="card">🎴</div>
+                            <div class="floating-item product-showcase" style="--delay: 2s" data-product="poster">🖼️</div>
+                            <div class="floating-item product-showcase" style="--delay: 2.5s" data-product="bag">🎒</div>
+                        </div>
+                        <div class="hero-3d-preview" id="hero3DPreview">
+                            <div class="preview-container">
+                                <div class="rotating-preview">
+                                    <div class="preview-face front">🎨</div>
+                                    <div class="preview-face back">🖌️</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="features" id="featuresSection">
+                <div class="container">
+                    <h2 class="section-title">ميزاتنا الرئيسية</h2>
+                    <div class="features-grid">
+                        <div class="feature-card enhanced" data-feature="3d">
+                            <div class="feature-glow"></div>
+                            <div class="feature-icon">🎯</div>
+                            <h3 class="feature-title">عرض ثلاثي الأبعاد مباشر</h3>
+                            <p class="feature-description">شاهد تصميمك بشكل مجسم وتفاعلي قبل الطباعة مع إمكانية التعديل المباشر والمعاينة الفورية من جميع الزوايا</p>
+                            <div class="feature-stats">
+                                <span class="stat">دقة عالية</span>
+                                <span class="stat">معاينة فورية</span>
+                                <span class="stat">تفاعل كامل</span>
+                            </div>
+                            <div class="feature-demo" id="3dDemo">
+                                <div class="demo-cube">
+                                    <div class="cube-face front">3D</div>
+                                    <div class="cube-face back">360°</div>
+                                    <div class="cube-face right">HD</div>
+                                    <div class="cube-face left">RT</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card enhanced" data-feature="ai">
+                            <div class="feature-glow"></div>
+                            <div class="feature-icon">🤖</div>
+                            <h3 class="feature-title">مساعد ذكي متطور</h3>
+                            <p class="feature-description">احصل على اقتراحات ذكية لتحسين تصميمك مع إصلاح الأخطاء تلقائياً وتوجيهات إبداعية مخصصة مدعومة بالذكاء الاصطناعي</p>
+                            <div class="feature-stats">
+                                <span class="stat">ذكاء اصطناعي</span>
+                                <span class="stat">اقتراحات ذكية</span>
+                                <span class="stat">إصلاح تلقائي</span>
+                            </div>
+                            <div class="ai-simulation" id="aiSimulation">
+                                <div class="ai-brain">
+                                    <div class="brain-pulse"></div>
+                                    <div class="brain-nodes">
+                                        <div class="node"></div>
+                                        <div class="node"></div>
+                                        <div class="node"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card enhanced" data-feature="security">
+                            <div class="feature-glow"></div>
+                            <div class="feature-icon">🔒</div>
+                            <h3 class="feature-title">أمان وحماية متقدمة</h3>
+                            <p class="feature-description">نضمن حماية تامة لبياناتك وتصميماتك مع تشفير متقدم وبوابات دفع آمنة معتمدة عالمياً وحفظ سحابي آمن</p>
+                            <div class="feature-stats">
+                                <span class="stat">تشفير SSL</span>
+                                <span class="stat">دفع آمن</span>
+                                <span class="stat">حفظ سحابي</span>
+                            </div>
+                            <div class="security-shield">
+                                <div class="shield-layers">
+                                    <div class="shield-layer"></div>
+                                    <div class="shield-layer"></div>
+                                    <div class="shield-layer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Products Section -->
+            <section class="quick-products">
+                <div class="container">
+                    <h2 class="section-title">منتجاتنا المميزة</h2>
+                    <div class="products-showcase">
+                        <div class="products-grid enhanced" id="quickProductsGrid">
+                            <!-- Products will be loaded here -->
+                        </div>
+                    </div>
+                    <div class="section-actions">
+                        <button class="btn btn--outline" data-page="products">عرض جميع المنتجات</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Performance Section -->
+            <section class="performance-section">
+                <div class="container">
+                    <h2 class="section-title">الأداء والجودة</h2>
+                    <div class="performance-grid">
+                        <div class="performance-card">
+                            <div class="performance-chart">
+                                <canvas id="qualityChart" width="200" height="200" style="position: relative;"></canvas>
+                            </div>
+                            <h3>جودة الطباعة</h3>
+                            <p>دقة عالية تصل إلى 4K بألوان حقيقية</p>
+                        </div>
+                        <div class="performance-card">
+                            <div class="performance-metric">
+                                <span class="metric-number">2.1s</span>
+                                <span class="metric-label">زمن التحميل</span>
+                            </div>
+                            <h3>سرعة الأداء</h3>
+                            <p>تحميل فائق السرعة مع تحسينات متقدمة</p>
+                        </div>
+                        <div class="performance-card">
+                            <div class="performance-metric">
+                                <span class="metric-number">99.9%</span>
+                                <span class="metric-label">وقت التشغيل</span>
+                            </div>
+                            <h3>الاستقرار</h3>
+                            <p>خدمة مستمرة بدون انقطاع على مدار الساعة</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Products Page -->
+        <main id="productsPage" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">منتجاتنا</h1>
+                    <p class="page-description">اكتشف مجموعتنا الواسعة من المنتجات القابلة للتخصيص بجودة استثنائية</p>
+                </div>
+                
+                <div class="products-filters-container">
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="productSearch" placeholder="ابحث عن منتج...">
+                        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                            <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    
+                    <div class="products-filters">
+                        <div class="filter-group">
+                            <label class="form-label">الفئة</label>
+                            <select class="form-control" id="categoryFilter">
+                                <option value="">جميع الفئات</option>
+                                <option value="ملابس">ملابس</option>
+                                <option value="منزلية">منزلية</option>
+                                <option value="إكسسوارات">إكسسوارات</option>
+                                <option value="مكتبية">مكتبية</option>
+                                <option value="فنية">فنية</option>
+                                <option value="حقائب">حقائب</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="form-label">السعر</label>
+                            <select class="form-control" id="priceFilter">
+                                <option value="">جميع الأسعار</option>
+                                <option value="0-25">أقل من 25 ريال</option>
+                                <option value="25-50">25 - 50 ريال</option>
+                                <option value="50-100">أكثر من 50 ريال</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="form-label">الترتيب</label>
+                            <select class="form-control" id="sortFilter">
+                                <option value="">الترتيب الافتراضي</option>
+                                <option value="price-asc">الأرخص أولاً</option>
+                                <option value="price-desc">الأغلى أولاً</option>
+                                <option value="name">الاسم أ-ي</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="products-grid enhanced" id="allProductsGrid">
+                    <!-- Products will be loaded here -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Design Tool Page -->
+        <main id="designPage" class="page">
+            <div class="design-tool">
+                <!-- Left Sidebar -->
+                <div class="design-sidebar left-sidebar">
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">
+                            <span>اختيار المنتج</span>
+                            <div class="title-indicator"></div>
+                        </h3>
+                        <div class="product-selector" id="productSelector">
+                            <!-- Products will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">
+                            <span>لوحة الألوان</span>
+                            <div class="title-indicator"></div>
+                        </h3>
+                        <div class="color-palettes">
+                            <div class="palette-tabs">
+                                <button class="palette-tab active" data-palette="basic">أساسية</button>
+                                <button class="palette-tab" data-palette="modern">عصرية</button>
+                                <button class="palette-tab" data-palette="natural">طبيعية</button>
+                            </div>
+                            <div class="color-palette" id="colorPalette">
+                                <!-- Colors will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">
+                            <span>أدوات النص</span>
+                            <div class="title-indicator"></div>
+                        </h3>
+                        <div class="text-tools">
+                            <input type="text" class="form-control" placeholder="أضف نصاً" id="textInput">
+                            <div class="text-controls">
+                                <select class="form-control text-font" id="fontSelect">
+                                    <option value="Cairo">خط القاهرة</option>
+                                    <option value="Amiri">خط أميري</option>
+                                    <option value="Tajawal">خط تجوال</option>
+                                    <option value="Arial">خط أريال</option>
+                                </select>
+                                <input type="range" class="form-control text-size" id="textSize" min="12" max="48" value="24">
+                            </div>
+                            <button class="btn btn--secondary btn-add-text">إضافة نص</button>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">
+                            <span>الأشكال والرموز</span>
+                            <div class="title-indicator"></div>
+                        </h3>
+                        <div class="shapes-grid">
+                            <div class="shape-option" data-shape="rectangle">⬜</div>
+                            <div class="shape-option" data-shape="circle">⭕</div>
+                            <div class="shape-option" data-shape="triangle">🔺</div>
+                            <div class="shape-option" data-shape="star">⭐</div>
+                            <div class="shape-option" data-shape="heart">❤️</div>
+                            <div class="shape-option" data-shape="arrow">➡️</div>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">
+                            <span>الصور</span>
+                            <div class="title-indicator"></div>
+                        </h3>
+                        <button class="btn btn--outline upload-btn" id="uploadBtn">
+                            <span>تحميل صورة</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </button>
+                        <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                    </div>
+                </div>
+
+                <!-- Design Canvas -->
+                <div class="design-canvas">
+                    <div class="canvas-header">
+                        <div class="canvas-tools">
+                            <button class="tool-btn" id="zoomIn" title="تكبير">🔍+</button>
+                            <button class="tool-btn" id="zoomOut" title="تصغير">🔍-</button>
+                            <button class="tool-btn" id="toggleGrid" title="الشبكة">⊞</button>
+                            <button class="tool-btn" id="preview3D" title="معاينة ثلاثية الأبعاد">🎯</button>
+                            <button class="tool-btn" id="resetView" title="إعادة تعيين العرض">🔄</button>
+                        </div>
+                        <div class="canvas-info">
+                            <span id="selectedProduct">اختر منتجاً للبدء</span>
+                            <div class="zoom-indicator" id="zoomIndicator">100%</div>
+                        </div>
+                        <div class="canvas-actions">
+                            <button class="tool-btn" id="undoBtn" title="تراجع">↶</button>
+                            <button class="tool-btn" id="redoBtn" title="إعادة">↷</button>
+                            <button class="tool-btn" id="saveDesign" title="حفظ">💾</button>
+                        </div>
+                    </div>
+                    
+                    <div class="canvas-container">
+                        <div class="design-area" id="designArea">
+                            <div class="product-preview" id="productPreview">
+                                <div class="preview-placeholder">
+                                    <div class="placeholder-icon">🎨</div>
+                                    <h3>أداة التصميم المتطورة</h3>
+                                    <p>اختر منتجاً من القائمة الجانبية لبدء إنشاء تصميمك الفريد</p>
+                                    <div class="quick-start-tips">
+                                        <div class="tip">💡 استخدم الذكاء الاصطناعي للحصول على اقتراحات</div>
+                                        <div class="tip">🎯 معاينة ثلاثية الأبعاد في الوقت الفعلي</div>
+                                        <div class="tip">✨ حفظ تلقائي لتصميماتك</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="design-overlay" id="designOverlay"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar -->
+                <div class="design-sidebar right-sidebar">
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">
+                            <span>خصائص العنصر</span>
+                            <div class="title-indicator"></div>
+                        </h3>
+                        <div class="element-properties" id="elementProperties">
+                            <div class="no-selection">
+                                <p>اختر عنصراً لعرض خصائصه</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">
+                            <span>إدارة الطبقات</span>
+                            <div class="title-indicator"></div>
+                        </h3>
+                        <div class="layers-panel">
+                            <div class="layers-controls">
+                                <button class="layer-btn" id="duplicateLayer" title="تكرار">📋</button>
+                                <button class="layer-btn" id="deleteLayer" title="حذف">🗑️</button>
+                                <button class="layer-btn" id="moveUp" title="للأعلى">⬆️</button>
+                                <button class="layer-btn" id="moveDown" title="للأسفل">⬇️</button>
+                            </div>
+                            <div class="layers-list" id="layersList">
+                                <div class="layer-item base-layer">
+                                    <span class="layer-icon">🎨</span>
+                                    <span class="layer-name">الخلفية</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">
+                            <span>المساعد الذكي</span>
+                            <div class="title-indicator ai-indicator">
+                                <div class="ai-pulse"></div>
+                            </div>
+                        </h3>
+                        <div class="ai-assistant">
+                            <div class="ai-status">
+                                <div class="ai-avatar">🤖</div>
+                                <div class="ai-info">
+                                    <span class="ai-name">مساعد التصميم</span>
+                                    <span class="ai-status-text">جاهز للمساعدة</span>
+                                </div>
+                            </div>
+                            <div class="ai-chat" id="aiChat">
+                                <div class="ai-message">
+                                    مرحباً! أنا هنا لمساعدتك في إنشاء تصميم رائع. ابدأ باختيار منتج وسأقدم لك اقتراحات ذكية! 🚀
+                                </div>
+                            </div>
+                            <div class="design-analysis" id="designAnalysis">
+                                <div class="analysis-item">
+                                    <span class="analysis-label">جودة التصميم:</span>
+                                    <div class="progress-circle">
+                                        <svg class="progress-svg" width="40" height="40">
+                                            <circle cx="20" cy="20" r="15" fill="none" stroke="var(--color-border)" stroke-width="3"/>
+                                            <circle cx="20" cy="20" r="15" fill="none" stroke="var(--color-primary)" stroke-width="3" stroke-dasharray="94" stroke-dashoffset="94" class="progress-bar-circle"/>
+                                        </svg>
+                                        <span class="progress-text">0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ai-suggestions" id="aiSuggestions">
+                                <!-- AI suggestions will appear here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">
+                            <span>إحصائيات المشروع</span>
+                            <div class="title-indicator"></div>
+                        </h3>
+                        <div class="project-stats">
+                            <div class="stat-row">
+                                <div class="stat-item">
+                                    <span class="stat-icon">📝</span>
+                                    <div class="stat-info">
+                                        <span class="stat-label">العناصر</span>
+                                        <span class="stat-value" id="elementsCount">0</span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-icon">🎨</span>
+                                    <div class="stat-info">
+                                        <span class="stat-label">الألوان</span>
+                                        <span class="stat-value" id="colorsCount">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="stat-row">
+                                <div class="stat-item">
+                                    <span class="stat-icon">📏</span>
+                                    <div class="stat-info">
+                                        <span class="stat-label">الأبعاد</span>
+                                        <span class="stat-value" id="dimensionsInfo">400x500</span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-icon">🔧</span>
+                                    <div class="stat-info">
+                                        <span class="stat-label">آخر تعديل</span>
+                                        <span class="stat-value" id="lastModified">--</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="design-actions">
+                        <button class="btn btn--primary btn-add-to-cart">
+                            <span>إضافة للسلة</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.1 16.5H17" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </button>
+                        <div class="action-row">
+                            <button class="btn btn--outline btn-save">حفظ التصميم</button>
+                            <button class="btn btn--outline btn-export">تصدير</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3 class="footer-title">print imagination</h3>
+                        <p class="footer-description">منصة طباعة مخصصة متطورة تجمع بين التقنيات ثلاثية الأبعاد والذكاء الاصطناعي لتحويل أفكارك إلى منتجات مطبوعة بجودة استثنائية.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link">📸</a>
+                            <a href="#" class="social-link">🐦</a>
+                            <a href="#" class="social-link">💼</a>
+                            <a href="#" class="social-link">📱</a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4 class="footer-heading">روابط سريعة</h4>
+                        <div class="footer-links">
+                            <a href="#" class="footer-link" data-page="home">الرئيسية</a>
+                            <a href="#" class="footer-link" data-page="products">المنتجات</a>
+                            <a href="#" class="footer-link" data-page="design">أداة التصميم</a>
+                            <a href="#" class="footer-link">معرض الأعمال</a>
+                            <a href="#" class="footer-link">الأسئلة الشائعة</a>
+                            <a href="#" class="footer-link">سياسة الخصوصية</a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4 class="footer-heading">تواصل معنا</h4>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <span class="contact-icon">📧</span>
+                                <span>info@printimagination.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">📱</span>
+                                <span>+966 50 123 4567</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">📍</span>
+                                <span>شارع الملك فهد، الرياض 12345</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">⏰</span>
+                                <span>الأحد - الخميس: 9:00 - 18:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4 class="footer-heading">النشرة البريدية</h4>
+                        <p>اشترك ليصلك آخر الأخبار والعروض الخاصة</p>
+                        <div class="newsletter-form">
+                            <input type="email" class="form-control" placeholder="بريدك الإلكتروني">
+                            <button class="btn btn--primary">اشتراك</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <div class="footer-bottom-content">
+                        <p>&copy; 2025 Print Imagination. جميع الحقوق محفوظة.</p>
+                        <div class="footer-badges">
+                            <span class="badge">🔒 آمن 100%</span>
+                            <span class="badge">⚡ سريع</span>
+                            <span class="badge">🏆 جودة عالية</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Shopping Cart Modal -->
+    <div id="cartModal" class="modal hidden">
+        <div class="modal-overlay" id="cartOverlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">سلة التسوق</h3>
+                <button class="modal-close" id="closeCart">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="cartItems" class="cart-items">
+                    <div class="empty-cart">
+                        <div class="empty-cart-icon">🛒</div>
+                        <h3>سلة التسوق فارغة</h3>
+                        <p>ابدأ بإضافة منتجات لسلة التسوق</p>
+                        <button class="btn btn--primary" data-page="products">تسوق الآن</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" id="cartFooter" style="display: none;">
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>المجموع الفرعي:</span>
+                        <span id="cartSubtotal">0 ريال</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>الضريبة (15%):</span>
+                        <span id="cartTax">0 ريال</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>المجموع الكلي:</span>
+                        <span id="cartTotal">0 ريال</span>
+                    </div>
+                </div>
+                <button class="btn btn--primary btn-checkout">إتمام الطلب</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Demo Modal -->
+    <div id="demoModal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content demo-content">
+            <div class="modal-header">
+                <h3 class="modal-title">العرض التوضيحي</h3>
+                <button class="modal-close" id="closeDemoModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="demo-video-placeholder">
+                    <div class="video-icon">▶️</div>
+                    <h3>شاهد كيفية عمل المنصة</h3>
+                    <p>تعرف على جميع الميزات والأدوات المتاحة في منصة Print Imagination</p>
+                    <div class="demo-features">
+                        <div class="demo-feature">✨ أداة التصميم المتطورة</div>
+                        <div class="demo-feature">🤖 المساعد الذكي</div>
+                        <div class="demo-feature">🎯 المعاينة ثلاثية الأبعاد</div>
+                        <div class="demo-feature">📱 التصميم المتجاوب</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
